@@ -10,7 +10,7 @@
   <div id="app">
     <input type="text" v-model='keyword' placeholder="请输入搜索关键字！">
     <ul>
-      <li v-for="(person, index) in persons" :key="person.id">{{person.id}}---{{person.name}}---{{person.age}}</li>
+      <li v-for="(person, index) in newPersons" :key="person.id">{{person.id}}---{{person.name}}---{{person.age}}</li>
     </ul>
   </div>
   <script src="./js/vue.js"></script>
@@ -27,7 +27,13 @@
           ]
         }
       },
-      
+      computed:{
+        newPersons(){
+          const {keyword,persons} = this
+          let arr = persons.filter(item=> item.name.indexOf(keyword) !== -1)
+          return arr
+        }
+      }
     }).$mount('#app')
   </script>
 </body>
