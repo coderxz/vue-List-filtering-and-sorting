@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <input type="text" v-model='keyword' placeholder="请输入搜索关键字！">
+    <ul>
+      <li v-for="(person, index) in persons" :key="person.id">{{person.id}}---{{person.name}}---{{person.age}}</li>
+    </ul>
+  </div>
+  <script src="./js/vue.js"></script>
+  <script>
+    const vm = new Vue({
+      data(){
+        return {
+          keyword:'',
+          persons:[
+            {id:0,name:'胡歌',age:'40'},
+            {id:1,name:'霍建华',age:'34'},
+            {id:2,name:'周杰伦',age:'42'},
+            {id:3,name:'top',age:'35'}
+          ]
+        }
+      },
+      
+    }).$mount('#app')
+  </script>
+</body>
+</html>
