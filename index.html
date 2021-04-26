@@ -12,6 +12,9 @@
     <ul>
       <li v-for="(person, index) in newPersons" :key="person.id">{{person.id}}---{{person.name}}---{{person.age}}</li>
     </ul>
+    <button @click="sortType = 0">按年龄升序排列</button>
+    <button @click="sortType = 1">按年龄降序排列</button>
+    <button @click="sortType = 2">按默认年龄排列</button>
   </div>
   <script src="./js/vue.js"></script>
   <script>
@@ -23,14 +26,21 @@
             {id:0,name:'胡歌',age:'40'},
             {id:1,name:'霍建华',age:'34'},
             {id:2,name:'周杰伦',age:'42'},
-            {id:3,name:'top',age:'35'}
-          ]
+            {id:3,name:'top',age:'35'},
+            {id:4,name:'zs',age:'17'},
+            {id:5,name:'zs',age:'18'},
+            {id:6,name:'zs',age:'19'},
+          ],
+          sortType:''
         }
       },
       computed:{
         newPersons(){
-          const {keyword,persons} = this
+          const {keyword,persons,sortType} = this
           let arr = persons.filter(item=> item.name.indexOf(keyword) !== -1)
+          if(sortType!==2){
+            arr.sort((a,b)=> sortType===0? a.age-b.age : b.age - a.age)
+          }
           return arr
         }
       }
